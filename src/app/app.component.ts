@@ -11,4 +11,12 @@ export class AppComponent {
   title = 'Pokédex';
   name = 'Pikachu';
   life = 21;
+
+  incrementLife() {
+    console.log('+1 point de vie');
+  }
+
+  decrementLife() {
+    console.log('-1 point de vie');
+  }
 }
