@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'Pokédex';
   name = 'Pikachu';
   life = 21;
 
