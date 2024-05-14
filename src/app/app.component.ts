@@ -13,10 +13,10 @@ export class AppComponent {
   life = 21;
 
   incrementLife() {
-    console.log('+1 point de vie');
+    this.life = this.life + 1;
   }
 
   decrementLife() {
-    console.log('-1 point de vie');
+    this.life = this.life - 1;
   }
 }
