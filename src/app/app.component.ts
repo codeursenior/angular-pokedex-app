@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,14 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  name = 'Pikachu';
-  life = 21;
+  name = signal('Pikachu');
+  life = signal(21);
 
   incrementLife() {
-    this.life = this.life + 1;
+    this.life.update((n) => n + 1);
   }
 
   decrementLife() {
-    this.life = this.life - 1;
+    this.life.update((n) => n - 1);
   }
 }
