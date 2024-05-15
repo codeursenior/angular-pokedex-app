@@ -3,5 +3,5 @@
 <img [src]="imageSrc()" alt="Pikachu" />
 <p>Taille: {{ size() }}</p>
 <p>Points de vie : {{ life() }}</p>
-<button (click)="incrementLife()">+</button>
-<button (click)="decrementLife()">-</button>
+<button (click)="incrementLife()" [disabled]="life() >= 30">+</button>
+<button (click)="decrementLife()" [disabled]="life() <= 10">-</button>
