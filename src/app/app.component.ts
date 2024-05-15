@@ -10,6 +10,9 @@ import { Component, computed, signal } from '@angular/core';
 export class AppComponent {
   name = signal('Pikachu');
   life = signal(21);
+  imageSrc = signal(
+    'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png'
+  );
   size = computed(() => {
     if (this.life() <= 15) {
       return 'Petit';

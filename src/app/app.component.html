@@ -1,5 +1,6 @@
 <h1>Pokédex</h1>
 <h2>{{ name() }}</h2>
+<img [src]="imageSrc()" alt="Pikachu" />
 <p>Taille: {{ size() }}</p>
 <p>Points de vie : {{ life() }}</p>
 <button (click)="incrementLife()">+</button>
