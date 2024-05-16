@@ -4,6 +4,30 @@
   </div>
 </nav>
 
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-4 offset-4">
+      <div class="card">
+        <form class="card-body">
+          <div class="form-group">
+            <label for="search" class="form-label">Rechercher un Pokémon</label>
+            <input
+              id="search"
+              type="text"
+              name="searchTerm"
+              class="form-control"
+              placeholder="Rechercher un pokémon"
+              #searchField
+              [value]="searchTerm()"
+              (input)="searchTerm.set(searchField.value)"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     @for(pokemon of pokemonList(); track pokemon.id) {
