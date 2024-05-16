@@ -2,6 +2,13 @@
 
 @for(pokemon of pokemonList(); track pokemon.id) {
 <h2>{{ pokemon.name }}</h2>
-<img [src]="pokemon.picture" alt="Pikachu" />
+<p>Taille : {{ size(pokemon) }}</p>
+<img [src]="pokemon.picture" [alt]="pokemon.name" />
 <p>Points de vie : {{ pokemon.life }}</p>
+<button (click)="incrementLife(pokemon)" [disabled]="pokemon.life >= 30">
+  +
+</button>
+<button (click)="decrementLife(pokemon)" [disabled]="pokemon.life <= 10">
+  -
+</button>
 }
