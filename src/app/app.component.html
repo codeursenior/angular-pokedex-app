@@ -30,7 +30,7 @@
 
 <div class="container">
   <div class="row">
-    @for(pokemon of pokemonList(); track pokemon.id) {
+    @for(pokemon of pokemonListFiltered(); track pokemon.id) {
     <div class="col-md-4">
       <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
         <div class="row g-0">

@@ -12,15 +12,15 @@ import { PokemonService } from './pokemon.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  pokemonService = inject(PokemonService);
-
-  searchTerm = signal('');
-  pokemonList = computed(() => {
-    return this.pokemonService
-      .getPokemonList()
-      .filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(this.searchTerm().toLowerCase())
-      );
+  readonly pokemonService = inject(PokemonService);
+  readonly pokemonList = signal(this.pokemonService.getPokemonList());
+  readonly searchTerm = signal('');
+  readonly pokemonListFiltered = computed(() => {
+    return this.pokemonList().filter((pokemon) =>
+      pokemon.name
+        .toLowerCase()
+        .includes(this.searchTerm().trim().toLowerCase())
+    );
   });
 
   size(pokemon: Pokemon) {
