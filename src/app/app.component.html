@@ -23,6 +23,9 @@
               <h6 class="card-subtitle mb-2 text-body-secondary">
                 Taille : {{ size(pokemon) }}
               </h6>
+              <p class="card-text">
+                {{ pokemon.created | date : "dd/MM/yyyy" }}
+              </p>
               <p class="card-text">Points de vie : {{ pokemon.life }}</p>
               <div class="btn-group btn-group-sm" role="group">
                 <button
