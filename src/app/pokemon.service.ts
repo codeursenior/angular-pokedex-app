@@ -6,7 +6,7 @@ import { POKEMON_LIST } from './pokemon-list.fake';
   providedIn: 'root',
 })
 export class PokemonService {
-  // Retourne la lite de tous les Pokémons.
+  // Retourne la liste de tous les Pokémons.
   getPokemonList(): PokemonList {
     return POKEMON_LIST;
   }
