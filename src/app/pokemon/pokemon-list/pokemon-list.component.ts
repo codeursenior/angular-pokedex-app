@@ -3,11 +3,12 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { PokemonBorderDirective } from '../../pokemon-border.directive';
 import { PokemonService } from '../../pokemon.service';
 import { Pokemon } from '../../pokemon.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [DatePipe, PokemonBorderDirective],
+  imports: [DatePipe, RouterLink, PokemonBorderDirective],
   templateUrl: './pokemon-list.component.html',
   styles: ``,
 })
