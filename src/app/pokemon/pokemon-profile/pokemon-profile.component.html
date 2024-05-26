@@ -1,1 +1,60 @@
-<h1 class="text-center">Pokémon : {{ pokemon().name }}</h1>
+<div class="container mt-5">
+  <div class="card">
+    <div class="row g-0">
+      <div
+        class="col-md-4 d-flex align-items-center justify-content-center bg-light"
+      >
+        <img
+          [src]="pokemon().picture"
+          class="img-fluid rounded-start"
+          [alt]="pokemon().name"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ pokemon().name }}</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Points de vie</th>
+                <td>{{ pokemon().life }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Dégâts</th>
+                <td>{{ pokemon().damage }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Types</th>
+                <td>
+                  @for(type of pokemon().types; track type) {
+                  <span class="badge rounded-pill bg-secondary me-1">{{
+                    type
+                  }}</span>
+                  }
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Date de création</th>
+                <td>{{ pokemon().created | date : "dd/MM/yyyy" }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between mt-4">
+            <button
+              class="btn btn-link text-decoration-none text-warning"
+              routerLink="/pokemons"
+            >
+              RETOUR
+            </button>
+            <button class="btn btn-link text-decoration-none text-warning">
+              ÉDITER
+            </button>
+            <button class="btn btn-link text-decoration-none text-warning">
+              SUPPRIMER
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
