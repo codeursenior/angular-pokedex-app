@@ -28,7 +28,9 @@
     <div class="col-md-4" [routerLink]="['/pokemons', pokemon.id]">
       <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
         <div class="row g-0">
-          <div class="col-md-4 bg-light">
+          <div
+            class="col-md-4 d-flex align-items-center justify-content-center bg-light"
+          >
             <img
               class="img-fluid rounded-start"
               [src]="pokemon.picture"
