@@ -5,10 +5,14 @@ import { PokemonProfileComponent } from './pokemon/pokemon-profile/pokemon-profi
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: 'pokemons', component: PokemonListComponent },
-  { path: 'pokemons/:id', component: PokemonProfileComponent },
+  { path: 'pokemons', component: PokemonListComponent, title: 'Pokédex' },
+  {
+    path: 'pokemons/:id',
+    component: PokemonProfileComponent,
+    title: 'Pokémon',
+  },
   { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent, title: 'Page introuvable' },
 ];
 
 export const appConfig: ApplicationConfig = {
