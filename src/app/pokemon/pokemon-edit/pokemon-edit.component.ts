@@ -8,7 +8,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { POKEMON_RULES } from '../../pokemon.model';
+import { POKEMON_RULES, getPokemonColor } from '../../pokemon.model';
 
 @Component({
   selector: 'app-pokemon-edit',
@@ -36,6 +36,10 @@ export class PokemonEditComponent {
       this.pokemon().types.map((type) => new FormControl(type))
     ),
   });
+
+  getPokemonColor(type: string) {
+    return getPokemonColor(type);
+  }
 
   get pokemonTypeList() {
     return this.form.get('types') as FormArray;

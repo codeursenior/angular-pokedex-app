@@ -102,6 +102,7 @@
                       type="button"
                       class="btn btn-secondary btn-sm rounded-pill m-1"
                       (click)="pokemonTypeList.removeAt(index)"
+                      [style.backgroundColor]="getPokemonColor(type.value)"
                     >
                       {{ type.value }} <span class="badge">x</span>
                     </button>
