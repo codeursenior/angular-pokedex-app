@@ -8,6 +8,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { POKEMON_RULES } from '../../pokemon.model';
 
 @Component({
   selector: 'app-pokemon-edit',
@@ -70,11 +71,11 @@ export class PokemonEditComponent {
 
   incrementLife() {
     const newValue = this.pokemonLife.value + 1;
+    this.pokemonLife.setValue(newValue);
+  }
 
-    if (newValue >= POKEMON_RULES.MAX_LIFE) {
-      this.pokemonLife.disable();
-    }
-
+  decrementLife() {
+    const newValue = this.pokemonLife.value - 1;
     this.pokemonLife.setValue(newValue);
   }
 }

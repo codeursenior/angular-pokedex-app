@@ -31,18 +31,28 @@
                   <th scope="row">Points de vie</th>
                   <td>
                     <div class="input-group">
-                      <button type="button" class="btn btn-outline-secondary">
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        [disabled]="
+                          pokemonLife.value <= POKEMON_RULES().MIN_LIFE
+                        "
+                        (click)="decrementLife()"
+                      >
                         -
                       </button>
                       <input
                         type="number"
                         class="form-control text-center"
                         formControlName="life"
+                        readonly
                       />
                       <button
                         type="button"
                         class="btn btn-outline-secondary"
-                        [disabled]="pokemonLife.disabled"
+                        [disabled]="
+                          pokemonLife.value >= POKEMON_RULES().MAX_LIFE
+                        "
                         (click)="incrementLife()"
                       >
                         +
@@ -54,11 +64,7 @@
                   <th scope="row">Dégâts</th>
                   <td>
                     <div class="input-group">
-                      <button
-                        type="button"
-                        class="btn btn-outline-secondary"
-                        disabled
-                      >
+                      <button type="button" class="btn btn-outline-secondary">
                         -
                       </button>
                       <input
@@ -66,11 +72,7 @@
                         formControlName="damage"
                         class="form-control text-center"
                       />
-                      <button
-                        type="button"
-                        class="btn btn-outline-secondary"
-                        disabled
-                      >
+                      <button type="button" class="btn btn-outline-secondary">
                         +
                       </button>
                     </div>
