@@ -64,15 +64,30 @@
                   <th scope="row">Dégâts</th>
                   <td>
                     <div class="input-group">
-                      <button type="button" class="btn btn-outline-secondary">
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        [disabled]="
+                          pokemonDamage.value <= POKEMON_RULES().MIN_DAMAGE
+                        "
+                        (click)="decrementDamage()"
+                      >
                         -
                       </button>
                       <input
                         type="number"
                         formControlName="damage"
                         class="form-control text-center"
+                        readonly
                       />
-                      <button type="button" class="btn btn-outline-secondary">
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        [disabled]="
+                          pokemonDamage.value >= POKEMON_RULES().MAX_DAMAGE
+                        "
+                        (click)="incrementDamage()"
+                      >
                         +
                       </button>
                     </div>
