@@ -38,4 +38,24 @@ export class PokemonEditComponent {
   get pokemonTypeList() {
     return this.form.get('types') as FormArray;
   }
+
+  isPokemonTypeSelected(type: string) {
+    return !!this.pokemonTypeList.controls.find(
+      (control) => control.value === type
+    );
+  }
+
+  onPokemonTypeChange(type: string, isChecked: boolean) {
+    if (isChecked) {
+      // Add control
+      const control = new FormControl(type);
+      this.pokemonTypeList.push(control);
+    } else {
+      // Remove control
+      const index = this.pokemonTypeList.controls
+        .map((control) => control.value)
+        .indexOf(type);
+      this.pokemonTypeList.removeAt(index);
+    }
+  }
 }
