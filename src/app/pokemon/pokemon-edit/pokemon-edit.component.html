@@ -11,7 +11,7 @@
         />
       </div>
       <div class="col-md-8">
-        <form>
+        <form [formGroup]="form">
           <div class="card-body">
             <h2 class="card-title">{{ pokemon().name }}</h2>
             <table class="table">
@@ -22,6 +22,7 @@
                     <input
                       type="text"
                       class="form-control"
+                      formControlName="name"
                       [value]="pokemon().name"
                       placeholder="Nom du Pokémon"
                     />
@@ -37,6 +38,7 @@
                       <input
                         type="number"
                         class="form-control text-center"
+                        formControlName="life"
                         [value]="pokemon().life"
                       />
                       <button class="btn btn-outline-secondary" disabled>
@@ -54,6 +56,7 @@
                       </button>
                       <input
                         type="number"
+                        formControlName="damage"
                         class="form-control text-center"
                         [value]="pokemon().damage"
                       />
