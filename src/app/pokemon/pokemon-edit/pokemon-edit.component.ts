@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-pokemon-edit',
@@ -19,4 +20,13 @@ export class PokemonEditComponent {
   readonly pokemon = signal(
     this.pokemonService.getPokemonById(this.pokemonId())
   ).asReadonly();
+
+  readonly form = new FormGroup({
+    name: new FormControl(this.pokemon().name, { nonNullable: true }),
+    life: new FormControl(this.pokemon().life, { nonNullable: true }),
+    damage: new FormControl(this.pokemon().damage, { nonNullable: true }),
+    types: new FormArray(
+      this.pokemon().types.map((type) => new FormControl(type))
+    ),
+  });
 }
