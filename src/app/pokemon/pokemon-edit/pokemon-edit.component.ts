@@ -25,11 +25,12 @@ export class PokemonEditComponent {
   readonly pokemon = signal(
     this.pokemonService.getPokemonById(this.pokemonId())
   ).asReadonly();
+  readonly POKEMON_RULES = signal(POKEMON_RULES).asReadonly();
 
   readonly form = new FormGroup({
-    name: new FormControl(this.pokemon().name, { nonNullable: true }),
-    life: new FormControl(this.pokemon().life, { nonNullable: true }),
-    damage: new FormControl(this.pokemon().damage, { nonNullable: true }),
+    name: new FormControl(this.pokemon().name),
+    life: new FormControl(this.pokemon().life),
+    damage: new FormControl(this.pokemon().damage),
     types: new FormArray(
       this.pokemon().types.map((type) => new FormControl(type))
     ),
@@ -61,5 +62,19 @@ export class PokemonEditComponent {
 
   onSubmit() {
     console.log(this.form);
+  }
+
+  get pokemonLife() {
+    return this.form.get('life') as FormControl;
+  }
+
+  incrementLife() {
+    const newValue = this.pokemonLife.value + 1;
+
+    if (newValue >= POKEMON_RULES.MAX_LIFE) {
+      this.pokemonLife.disable();
+    }
+
+    this.pokemonLife.setValue(newValue);
   }
 }
