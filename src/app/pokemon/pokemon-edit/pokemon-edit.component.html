@@ -103,8 +103,18 @@
                       class="btn btn-secondary btn-sm rounded-pill m-1"
                       (click)="pokemonTypeList.removeAt(index)"
                       [style.backgroundColor]="getPokemonColor(type.value)"
+                      [style.color]="
+                        type.value === 'Electrik' ? 'black' : 'white'
+                      "
                     >
-                      {{ type.value }} <span class="badge">x</span>
+                      {{ type.value }}
+                      <span
+                        class="badge"
+                        [style.color]="
+                          type.value === 'Electrik' ? 'black' : 'white'
+                        "
+                        >x</span
+                      >
                     </button>
                     }
                     <div class="row mt-3">
