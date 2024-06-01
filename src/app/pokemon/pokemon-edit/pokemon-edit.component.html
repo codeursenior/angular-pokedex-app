@@ -69,12 +69,14 @@
                 <tr>
                   <th scope="row">Types</th>
                   <td>
-                    @for(type of pokemon().types; track type) {
+                    @for(type of pokemonTypeList.controls; track type; let index
+                    = $index) {
                     <button
                       type="button"
                       class="btn btn-secondary btn-sm rounded-pill me-2"
+                      (click)="pokemonTypeList.removeAt(index)"
                     >
-                      {{ type }} <span class="badge">x</span>
+                      {{ type.value }} <span class="badge">x</span>
                     </button>
                     }
                     <div class="row mt-3">

@@ -34,4 +34,8 @@ export class PokemonEditComponent {
       this.pokemon().types.map((type) => new FormControl(type))
     ),
   });
+
+  get pokemonTypeList() {
+    return this.form.get('types') as FormArray;
+  }
 }
