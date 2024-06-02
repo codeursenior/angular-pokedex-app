@@ -7,6 +7,7 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { POKEMON_RULES, getPokemonColor } from '../../pokemon.model';
 
@@ -29,7 +30,12 @@ export class PokemonEditComponent {
   readonly POKEMON_RULES = signal(POKEMON_RULES).asReadonly();
 
   readonly form = new FormGroup({
-    name: new FormControl(this.pokemon().name),
+    name: new FormControl(this.pokemon().name, [
+      Validators.required,
+      Validators.minLength(POKEMON_RULES.MIN_NAME),
+      Validators.maxLength(POKEMON_RULES.MAX_NAME),
+      Validators.pattern(POKEMON_RULES.NAME_PATTERN),
+    ]),
     life: new FormControl(this.pokemon().life),
     damage: new FormControl(this.pokemon().damage),
     types: new FormArray(
