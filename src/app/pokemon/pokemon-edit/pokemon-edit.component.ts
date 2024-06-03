@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
@@ -14,7 +14,7 @@ import { POKEMON_RULES, getPokemonColor } from '../../pokemon.model';
 @Component({
   selector: 'app-pokemon-edit',
   standalone: true,
-  imports: [DatePipe, RouterLink, ReactiveFormsModule],
+  imports: [DatePipe, RouterLink, ReactiveFormsModule, JsonPipe],
   templateUrl: './pokemon-edit.component.html',
   styles: ``,
 })
@@ -73,6 +73,10 @@ export class PokemonEditComponent {
 
   onSubmit() {
     console.log(this.form);
+  }
+
+  get pokemonName() {
+    return this.form.get('name') as FormControl;
   }
 
   get pokemonLife() {
