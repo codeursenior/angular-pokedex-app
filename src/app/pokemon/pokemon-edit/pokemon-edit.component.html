@@ -26,9 +26,6 @@
                       formControlName="name"
                       placeholder="Nom du Pokémon"
                     />
-                    <div>
-                      {{ pokemonName.errors | json }}
-                    </div>
                     @if(pokemonName.hasError('required')) {
                     <div class="invalid-feedback">
                       Veuillez renseigner ce champ.

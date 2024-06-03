@@ -1,4 +1,4 @@
-import { DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
@@ -14,7 +14,7 @@ import { POKEMON_RULES, getPokemonColor } from '../../pokemon.model';
 @Component({
   selector: 'app-pokemon-edit',
   standalone: true,
-  imports: [DatePipe, RouterLink, ReactiveFormsModule, JsonPipe],
+  imports: [DatePipe, RouterLink, ReactiveFormsModule],
   templateUrl: './pokemon-edit.component.html',
   styles: ``,
 })
