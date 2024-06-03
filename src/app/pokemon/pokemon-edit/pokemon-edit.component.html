@@ -189,7 +189,10 @@
               </button>
               <button
                 type="submit"
-                class="btn btn-link text-decoration-none text-warning"
+                class="btn btn-link text-decoration-none"
+                [class.text-warning]="form.valid"
+                [class.text-secondary]="form.invalid"
+                [disabled]="form.invalid"
               >
                 SAUVEGARDER LES CHANGEMENTS
               </button>

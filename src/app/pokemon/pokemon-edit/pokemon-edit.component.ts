@@ -73,6 +73,9 @@ export class PokemonEditComponent {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
     console.log(this.form);
   }
 
