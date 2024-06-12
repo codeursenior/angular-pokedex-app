@@ -21,11 +21,9 @@ import { POKEMON_RULES, getPokemonColor } from '../../pokemon.model';
 export class PokemonEditComponent {
   readonly route = inject(ActivatedRoute);
   readonly pokemonService = inject(PokemonService);
-  readonly pokemonId = signal(
-    Number(this.route.snapshot.paramMap.get('id'))
-  ).asReadonly();
+  readonly pokemonId = Number(this.route.snapshot.paramMap.get('id'));
   readonly pokemon = signal(
-    this.pokemonService.getPokemonById(this.pokemonId())
+    this.pokemonService.getPokemonById(this.pokemonId)
   ).asReadonly();
   readonly POKEMON_RULES = signal(POKEMON_RULES).asReadonly();
 
