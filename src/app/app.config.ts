@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { Routes, provideRouter } from '@angular/router';
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { PokemonProfileComponent } from './pokemon/pokemon-profile/pokemon-profile.component';
@@ -22,5 +22,8 @@ const routes: Routes = [
 ];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)],
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+  ],
 };
