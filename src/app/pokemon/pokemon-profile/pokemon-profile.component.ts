@@ -11,12 +11,11 @@ import { DatePipe } from '@angular/common';
   styles: ``,
 })
 export class PokemonProfileComponent {
-  readonly route = inject(ActivatedRoute);
-  readonly pokemonService = inject(PokemonService);
-  readonly pokemonId = signal(
-    Number(this.route.snapshot.paramMap.get('id'))
-  ).asReadonly();
+  private readonly route = inject(ActivatedRoute);
+  private readonly pokemonService = inject(PokemonService);
+  private readonly pokemonId = Number(this.route.snapshot.paramMap.get('id'));
+  
   readonly pokemon = signal(
-    this.pokemonService.getPokemonById(this.pokemonId())
+    this.pokemonService.getPokemonById(this.pokemonId)
   ).asReadonly();
 }
