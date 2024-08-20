@@ -1,3 +1,4 @@
+@if(pokemon(); as pokemon) {
 <div class="container mt-5">
   <div class="card">
     <div class="row g-0">
@@ -5,15 +6,15 @@
         class="col-md-4 d-flex align-items-center justify-content-center bg-light"
       >
         <img
-          [src]="pokemon().picture"
+          [src]="pokemon.picture"
           class="img-fluid rounded-start"
-          [alt]="pokemon().name"
+          [alt]="pokemon.name"
         />
       </div>
       <div class="col-md-8">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="card-body">
-            <h2 class="card-title">{{ pokemon().name }}</h2>
+            <h2 class="card-title">{{ pokemon.name }}</h2>
             <table class="table">
               <tbody>
                 <tr>
@@ -180,7 +181,7 @@
             <div class="d-flex justify-content-between mt-4">
               <button
                 class="btn btn-link text-decoration-none text-warning"
-                [routerLink]="['/pokemons', pokemon().id]"
+                [routerLink]="['/pokemons', pokemon.id]"
               >
                 RETOUR
               </button>
@@ -200,3 +201,10 @@
     </div>
   </div>
 </div>
+} @else {
+<div class="d-flex justify-content-center">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
