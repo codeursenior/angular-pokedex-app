@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { PokemonList } from './pokemon.model';
+import { Pokemon, PokemonList } from './pokemon.model';
 import { POKEMON_LIST } from './pokemon-list.fake';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,14 +17,8 @@ export class PokemonService {
   }
 
   // Retourne le pokémon avec l'identifiant passé en paramètre.
-  getPokemonById(id: number) {
-    const pokemon = POKEMON_LIST.find((pokemon) => pokemon.id === id);
-
-    if (!pokemon) {
-      throw new Error(`No Pokémon found with id ${id}`);
-    }
-
-    return pokemon;
+  getPokemonById(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>(`${this.POKEMON_API_URL}/${id}`);
   }
 
   // Retourne la liste des types valides pour un pokémon.
