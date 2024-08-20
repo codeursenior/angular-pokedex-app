@@ -1,3 +1,4 @@
+@if(pokemon(); as pokemon) {
 <div class="container mt-5">
   <div class="card">
     <div class="row g-0">
@@ -5,28 +6,28 @@
         class="col-md-4 d-flex align-items-center justify-content-center bg-light"
       >
         <img
-          [src]="pokemon().picture"
+          [src]="pokemon.picture"
           class="img-fluid rounded-start"
-          [alt]="pokemon().name"
+          [alt]="pokemon.name"
         />
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2 class="card-title">{{ pokemon().name }}</h2>
+          <h2 class="card-title">{{ pokemon.name }}</h2>
           <table class="table">
             <tbody>
               <tr>
                 <th scope="row">Points de vie</th>
-                <td>{{ pokemon().life }}</td>
+                <td>{{ pokemon.life }}</td>
               </tr>
               <tr>
                 <th scope="row">Dégâts</th>
-                <td>{{ pokemon().damage }}</td>
+                <td>{{ pokemon.damage }}</td>
               </tr>
               <tr>
                 <th scope="row">Types</th>
                 <td>
-                  @for(type of pokemon().types; track type) {
+                  @for(type of pokemon.types; track type) {
                   <span class="badge rounded-pill bg-secondary me-1">{{
                     type
                   }}</span>
@@ -35,7 +36,7 @@
               </tr>
               <tr>
                 <th scope="row">Date de création</th>
-                <td>{{ pokemon().created | date : "dd/MM/yyyy" }}</td>
+                <td>{{ pokemon.created | date : "dd/MM/yyyy" }}</td>
               </tr>
             </tbody>
           </table>
@@ -48,7 +49,7 @@
             </button>
             <button
               class="btn btn-link text-decoration-none text-warning"
-              [routerLink]="['/pokemons/edit', pokemon().id]"
+              [routerLink]="['/pokemons/edit', pokemon.id]"
             >
               ÉDITER
             </button>
@@ -61,3 +62,10 @@
     </div>
   </div>
 </div>
+} @else {
+<div class="d-flex justify-content-center">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
