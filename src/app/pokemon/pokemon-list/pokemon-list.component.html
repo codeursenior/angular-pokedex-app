@@ -13,6 +13,7 @@
               placeholder="Rechercher un pokémon"
               #searchField
               [value]="searchTerm()"
+              [disabled]="loading()"
               (input)="searchTerm.set(searchField.value)"
             />
           </div>
@@ -24,7 +25,13 @@
 
 <div class="container">
   <div class="row">
-    @for(pokemon of pokemonListFiltered(); track pokemon.id) {
+    @if(loading()) {
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    } @for(pokemon of pokemonListFiltered(); track pokemon.id) {
     <div class="col-md-4">
       <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
         <div class="row g-0">

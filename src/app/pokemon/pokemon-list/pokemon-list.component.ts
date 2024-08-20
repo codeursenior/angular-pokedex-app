@@ -15,12 +15,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class PokemonListComponent {
   readonly pokemonService = inject(PokemonService);
-  readonly pokemonList = toSignal(this.pokemonService.getPokemonList(), {
-    initialValue: [],
-  });
+  readonly pokemonList = toSignal(this.pokemonService.getPokemonList());
+  readonly loading = computed(() => !this.pokemonList());
   readonly searchTerm = signal('');
   readonly pokemonListFiltered = computed(() => {
-    return this.pokemonList().filter((pokemon) =>
+    return this.pokemonList()?.filter((pokemon) =>
       pokemon.name
         .toLowerCase()
         .includes(this.searchTerm().trim().toLowerCase())
