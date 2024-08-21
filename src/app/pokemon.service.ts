@@ -21,6 +21,12 @@ export class PokemonService {
     return this.http.get<Pokemon>(`${this.POKEMON_API_URL}/${id}`);
   }
 
+  // Met à jour un pokémon existant.
+  updatePokemon(pokemon: Pokemon): Observable<Pokemon> {
+    const url = `${this.POKEMON_API_URL}/${pokemon.id}`;
+    return this.http.put<Pokemon>(url, pokemon);
+  }
+
   // Retourne la liste des types valides pour un pokémon.
   getPokemonTypeList(): string[] {
     return [
