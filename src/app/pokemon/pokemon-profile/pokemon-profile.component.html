@@ -53,7 +53,10 @@
             >
               ÉDITER
             </button>
-            <button class="btn btn-link text-decoration-none text-warning">
+            <button
+              class="btn btn-link text-decoration-none text-warning"
+              (click)="deletePokemon(pokemon.id)"
+            >
               SUPPRIMER
             </button>
           </div>

@@ -27,6 +27,12 @@ export class PokemonService {
     return this.http.put<Pokemon>(url, pokemon);
   }
 
+  // Supprime un pokémon.
+  deletePokemon(pokemonId: number): Observable<void> {
+    const url = `${this.POKEMON_API_URL}/${pokemonId}`;
+    return this.http.delete<void>(url);
+  }
+
   // Retourne la liste des types valides pour un pokémon.
   getPokemonTypeList(): string[] {
     return [
