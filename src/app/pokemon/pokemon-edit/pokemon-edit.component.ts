@@ -40,7 +40,6 @@ export class PokemonEditComponent {
           damage: pokemon.damage,
         });
 
-        this.pokemonTypeList.clear();
         pokemon.types.forEach((type) => {
           this.pokemonTypeList.push(new FormControl(type));
         });
