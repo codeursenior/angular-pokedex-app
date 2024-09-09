@@ -22,15 +22,18 @@ export class PokemonService {
 
   // Met à jour un pokémon existant.
   updatePokemon(pokemon: Pokemon): Observable<Pokemon> {
-    const url = `${this.POKEMON_API_URL}/${pokemon.id}`;
-    return this.http.put<Pokemon>(url, pokemon);
+    return this.http.put<Pokemon>(`${this.POKEMON_API_URL}/${pokemon.id}`, pokemon);
   }
 
   // Supprime un pokémon.
   deletePokemon(pokemonId: number): Observable<void> {
-    const url = `${this.POKEMON_API_URL}/${pokemonId}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(`${this.POKEMON_API_URL}/${pokemonId}`);
   }
+
+  // Ajoute un pokémon.
+  addPokemon(pokemon: Omit<Pokemon, 'id'>): Observable<Pokemon> {
+    return this.http.post<Pokemon>(this.POKEMON_API_URL, pokemon);
+ }
 
   // Retourne la liste des types valides pour un pokémon.
   getPokemonTypeList(): string[] {
