@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PokemonService } from '../../pokemon.service';
@@ -14,7 +13,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-pokemon-edit',
-    imports: [DatePipe, RouterLink, ReactiveFormsModule],
+    imports: [RouterLink, ReactiveFormsModule],
     templateUrl: './pokemon-edit.component.html',
     styles: ``
 })
