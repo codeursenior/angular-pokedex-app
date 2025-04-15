@@ -13,11 +13,10 @@ import { POKEMON_RULES, Pokemon, getPokemonColor } from '../../pokemon.model';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-pokemon-edit',
-  standalone: true,
-  imports: [DatePipe, RouterLink, ReactiveFormsModule],
-  templateUrl: './pokemon-edit.component.html',
-  styles: ``,
+    selector: 'app-pokemon-edit',
+    imports: [DatePipe, RouterLink, ReactiveFormsModule],
+    templateUrl: './pokemon-edit.component.html',
+    styles: ``
 })
 export class PokemonEditComponent {
   readonly route = inject(ActivatedRoute);

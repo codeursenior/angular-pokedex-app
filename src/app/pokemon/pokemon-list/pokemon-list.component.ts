@@ -7,17 +7,16 @@ import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-pokemon-list',
-  standalone: true,
-  imports: [DatePipe, RouterLink, PokemonBorderDirective],
-  templateUrl: './pokemon-list.component.html',
-  styles: [
-    `
+    selector: 'app-pokemon-list',
+    imports: [DatePipe, RouterLink, PokemonBorderDirective],
+    templateUrl: './pokemon-list.component.html',
+    styles: [
+        `
       .pokemon-card {
         cursor: pointer;
       }
     `,
-  ],
+    ]
 })
 export class PokemonListComponent {
   readonly pokemonService = inject(PokemonService);

@@ -7,11 +7,10 @@ import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-pokemon-profile',
-  standalone: true,
-  imports: [DatePipe, RouterLink],
-  templateUrl: './pokemon-profile.component.html',
-  styles: ``,
+    selector: 'app-pokemon-profile',
+    imports: [DatePipe, RouterLink],
+    templateUrl: './pokemon-profile.component.html',
+    styles: ``
 })
 export class PokemonProfileComponent {
   private readonly route = inject(ActivatedRoute);

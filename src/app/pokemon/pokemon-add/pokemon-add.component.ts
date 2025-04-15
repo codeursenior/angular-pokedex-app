@@ -5,11 +5,10 @@ import { PokemonService } from '../../pokemon.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-pokemon-add',
-  standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
-  templateUrl: './pokemon-add.component.html',
-  styles: ``
+    selector: 'app-pokemon-add',
+    imports: [ReactiveFormsModule, RouterLink],
+    templateUrl: './pokemon-add.component.html',
+    styles: ``
 })
 export class PokemonAddComponent {
   readonly router = inject(Router);
