@@ -29,7 +29,8 @@
       @for(type of typeList(); track type) {
         <button
         type="button"
-        class="btn btn-secondary btn-sm rounded-pill m-1"
+        class="btn btn-sm rounded-pill m-1"
+        [class.btn-secondary]="typeSelected() === type"
         (click)="filterByType(type)"
         >
         {{ type }}
@@ -48,7 +49,7 @@
       </div>
     </div>
     } @for(pokemon of pokemonListFiltered(); track pokemon.id) {
-    <div class="col-md-4 pokemon-card" [routerLink]="['/pokemons', pokemon.id]">
+    <div class="col-md-4 pokemon-card">
       <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
         <div class="row g-0">
           <div
@@ -69,8 +70,8 @@
               <p class="card-text">
                 {{ pokemon.created | date : "dd/MM/yyyy" }}
               </p>
-              <p class="card-text">Points de vie : {{ pokemon.life }}</p>
-              <p class="card-text">Dégâts : {{ pokemon.damage }}</p>
+              <p class="card-text" [routerLink]="['/pokemons', pokemon.id]">Voir ce Pokémon</p>
+              <p class="card-text" (click)="removePokemon(pokemon)">Supprimer ce Pokémon</p>
             </div>
           </div>
         </div>
