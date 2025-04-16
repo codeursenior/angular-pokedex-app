@@ -35,7 +35,41 @@ export class PokemonListComponent {
       pokemon.name
         .toLowerCase()
         .includes(this.searchTerm().trim().toLowerCase())
-    );
+    )
+    .filter((pokemon) => {
+      const typeSelected = this.typeSelected();
+      if (!typeSelected) {
+        return true;
+      }
+      return pokemon.types.includes(typeSelected);
+    })
+  });
+
+  readonly typeList = computed(() => {
+    const allTypes = this.pokemonList()?.flatMap((pokemon) => pokemon.types);
+    return [...new Set(allTypes)];
+  });
+
+  readonly typeSelected = linkedSignal<string[], string|null>({
+    source: this.typeList,
+    computation: (newTypeList, previous) => {
+      const isTypeListEmpty = newTypeList.length === 0;
+      if (isTypeListEmpty) {
+        return null;
+      }
+
+      if(!previous?.value) {
+        return null;
+      }
+
+      const isPreviousTypeSelectedValid = !!newTypeList.find(type => type === previous.value);
+
+      if(isPreviousTypeSelectedValid) {
+        return previous.value;
+      }
+
+      return newTypeList[0];
+    }
   });
 
 
@@ -48,5 +82,17 @@ export class PokemonListComponent {
     }
 
     return 'Moyen';
+  }
+
+
+  filterByType(type: string): void {
+    const newType = this.typeSelected() === type ? null : type;
+    this.typeSelected.set(newType);
+  }
+
+  removePokemon(pokemon: Pokemon): void {
+    this.pokemonList.update((pokemonList) => {
+      return pokemonList.filter(({id}) => id !== pokemon.id);
+    });
   }
 }
