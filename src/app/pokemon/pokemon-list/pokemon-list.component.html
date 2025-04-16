@@ -23,6 +23,22 @@
   </div>
 </div>
 
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-4 offset-4">
+      @for(type of typeList(); track type) {
+        <button
+        type="button"
+        class="btn btn-secondary btn-sm rounded-pill m-1"
+        (click)="filterByType(type)"
+        >
+        {{ type }}
+        </button>
+    }
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     @if(loading()) {

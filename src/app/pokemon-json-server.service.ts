@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Pokemon, PokemonList } from './pokemon.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { PokemonService } from './pokemon.service';
 
 export class PokemonJSONServerService implements PokemonService {
@@ -10,7 +10,7 @@ export class PokemonJSONServerService implements PokemonService {
 
   // Retourne la liste de tous les Pokémons.
   getPokemonList(): Observable<PokemonList> {
-    return this.http.get<PokemonList>(this.POKEMON_API_URL);
+    return this.http.get<PokemonList>(this.POKEMON_API_URL).pipe(delay(1000));
   }
 
   // Retourne le pokémon avec l'identifiant passé en paramètre.

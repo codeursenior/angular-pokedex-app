@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'pokemons',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',

@@ -41,7 +41,7 @@ export interface Pokemon {
   picture: string;
   life: number;
   damage: number;
-  types: [string, string?, string?];
+  types: [string] | [string, string] | [string, string, string];
   created: Date;
 }
 
