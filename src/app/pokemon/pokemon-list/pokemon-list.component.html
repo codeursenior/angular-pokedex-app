@@ -13,7 +13,7 @@
               placeholder="Rechercher un pokémon"
               #searchField
               [value]="searchTerm()"
-              [disabled]="loading()"
+              [disabled]="pokemonListResource.isLoading()"
               (input)="searchTerm.set(searchField.value)"
             />
           </div>
@@ -42,7 +42,7 @@
 
 <div class="container">
   <div class="row">
-    @if(loading()) {
+    @if(pokemonListResource.isLoading()) {
     <div class="d-flex justify-content-center">
       <div class="spinner-border text-success" role="status">
         <span class="visually-hidden">Loading...</span>

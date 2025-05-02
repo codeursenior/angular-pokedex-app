@@ -4,7 +4,7 @@ import { PokemonBorderDirective } from '../../pokemon-border.directive';
 import { PokemonService } from '../../pokemon.service';
 import { Pokemon, PokemonList } from '../../pokemon.model';
 import { RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { httpResource } from '@angular/common/http';
 
 @Component({
     selector: 'app-pokemon-list',
@@ -20,18 +20,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class PokemonListComponent {
   readonly pokemonService = inject(PokemonService);
-
-  constructor() {
-    this.pokemonService.getPokemonList().subscribe((pokemonList) => {
-      this.pokemonList.set(pokemonList);
-    });
-  }
-
-  readonly pokemonList = signal<PokemonList>([]);
-  readonly loading = computed(() => !this.pokemonList());
+  readonly pokemonListResource = httpResource<PokemonList>(() => 'http://localhost:3000/pokemons', { defaultValue: [] });
   readonly searchTerm = signal('');
+
   readonly pokemonListFiltered = computed(() => {
-    return this.pokemonList()?.filter((pokemon) =>
+    return this.pokemonListResource.value().filter((pokemon) =>
       pokemon.name
         .toLowerCase()
         .includes(this.searchTerm().trim().toLowerCase())
@@ -46,7 +39,7 @@ export class PokemonListComponent {
   });
 
   readonly typeList = computed(() => {
-    const allTypes = this.pokemonList()?.flatMap((pokemon) => pokemon.types);
+    const allTypes = this.pokemonListResource.value().flatMap((pokemon) => pokemon.types);
     return [...new Set(allTypes)];
   });
 
@@ -91,7 +84,7 @@ export class PokemonListComponent {
   }
 
   removePokemon(pokemon: Pokemon): void {
-    this.pokemonList.update((pokemonList) => {
+    this.pokemonListResource.update((pokemonList) => {
       return pokemonList.filter(({id}) => id !== pokemon.id);
     });
   }
