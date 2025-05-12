@@ -20,7 +20,7 @@ import { httpResource } from '@angular/common/http';
 })
 export class PokemonListComponent {
   readonly pokemonService = inject(PokemonService);
-  readonly pokemonListResource = httpResource<PokemonList>(() => 'http://localhost:3000/pokemons', { defaultValue: [] });
+  readonly pokemonListResource = this.pokemonService.getPokemonList();
   readonly searchTerm = signal('');
 
   readonly pokemonListFiltered = computed(() => {

@@ -1,4 +1,4 @@
-@if(pokemon(); as pokemon) {
+@if(pokemonResource.value(); as pokemon) {
 <div class="container mt-5">
   <div class="card">
     <div class="row g-0">
@@ -65,13 +65,13 @@
     </div>
   </div>
 </div>
-} @if(loading()){
+} @if(pokemonResource.isLoading()) {
 <div class="d-flex justify-content-center">
   <div class="spinner-border text-success" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-} @if(error()) {
+} @if(pokemonResource.error())  {
 <div class="container text-center mt-5">
   <div class="card">
     <div class="card-body">

@@ -5,18 +5,15 @@ import { PokemonProfileComponent } from './pokemon/pokemon-profile/pokemon-profi
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonEditComponent } from './pokemon/pokemon-edit/pokemon-edit.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { AuthGuard } from './core/auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { PokemonAddComponent } from './pokemon/pokemon-add/pokemon-add.component';
 import { PokemonService } from './pokemon.service';
 import { PokemonJSONServerService } from './pokemon-json-server.service';
-import { PokemonLocalStorageService } from './pokemon-local-storage.service';
-import { environment } from '../environments/environment';
 
 export function pokemonServiceFactory(): PokemonService {
-  return environment.production
-    ? new PokemonLocalStorageService()
-    : new PokemonJSONServerService();
+  // return environment.production
+  //   ? new PokemonLocalStorageService()
+  return new PokemonJSONServerService();
 }
 
 const routes: Routes = [

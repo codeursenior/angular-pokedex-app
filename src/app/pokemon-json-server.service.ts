@@ -1,6 +1,6 @@
-import { inject } from '@angular/core';
+import { inject, Signal } from '@angular/core';
 import { Pokemon, PokemonList } from './pokemon.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
 import { delay, Observable } from 'rxjs';
 import { PokemonService } from './pokemon.service';
 
@@ -9,13 +9,19 @@ export class PokemonJSONServerService implements PokemonService {
   private readonly POKEMON_API_URL = 'http://localhost:3000/pokemons';
 
   // Retourne la liste de tous les Pokémons.
-  getPokemonList(): Observable<PokemonList> {
-    return this.http.get<PokemonList>(this.POKEMON_API_URL).pipe(delay(1000));
+  getPokemonList(): HttpResourceRef<PokemonList> {
+    return httpResource<PokemonList>(() => this.POKEMON_API_URL, { defaultValue: [] });
   }
 
   // Retourne le pokémon avec l'identifiant passé en paramètre.
-  getPokemonById(id: number): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.POKEMON_API_URL}/${id}`);
+  getPokemonById(id: Signal<number>): HttpResourceRef<Pokemon|undefined> {
+    return httpResource<Pokemon>(() => {
+      if(!id()) {
+        return undefined;
+      }
+      
+      return `${this.POKEMON_API_URL}/${id()}`
+    });
   }
 
   // Met à jour un pokémon existant.

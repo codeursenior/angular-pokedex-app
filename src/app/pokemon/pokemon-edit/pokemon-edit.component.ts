@@ -21,15 +21,13 @@ export class PokemonEditComponent {
   readonly route = inject(ActivatedRoute);
   readonly router = inject(Router);
   readonly pokemonService = inject(PokemonService);
-  readonly pokemonId = Number(this.route.snapshot.paramMap.get('id'));
-  readonly pokemon = toSignal(
-    this.pokemonService.getPokemonById(this.pokemonId)
-  );
+  readonly pokemonId = signal(Number(this.route.snapshot.paramMap.get('id')));
+  readonly pokemonResource = this.pokemonService.getPokemonById(this.pokemonId);
   readonly POKEMON_RULES = signal(POKEMON_RULES).asReadonly();
 
   constructor() {
     effect(() => {
-      const pokemon = this.pokemon();
+      const pokemon = this.pokemonResource.value();
 
       if (pokemon) {
         this.form.patchValue({
@@ -87,7 +85,7 @@ export class PokemonEditComponent {
 
   onSubmit() {
     const isFormValid = this.form.valid;
-    const pokemon = this.pokemon();
+    const pokemon = this.pokemonResource.value();
 
     if (isFormValid && pokemon) {
       const updatedPokemon: Pokemon = {
@@ -99,7 +97,7 @@ export class PokemonEditComponent {
       };
 
       this.pokemonService.updatePokemon(updatedPokemon).subscribe(() => {
-        this.router.navigate(['/pokemons', this.pokemonId]);
+        this.router.navigate(['/pokemons', this.pokemonId()]);
       });
     }
   }
